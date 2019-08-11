@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore")
+
 import io
 import os
 import time
@@ -38,7 +41,7 @@ def downloadBlob(account_name, account_key, container, downloaded_filename):
 
 
 def downloadSingleBlob(account_name, account_key, container, blob_name):
-	downloaded_file = "migrate-to-database/downloaded.csv"
+	downloaded_file = "downloaded.csv"
 	block_blob_service = BlockBlobService(account_name=account_name, account_key=account_key)
 
 	print("Downloading......")

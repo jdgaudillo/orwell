@@ -3,12 +3,16 @@
 blobs="blobs/blobs.csv"
 downloaded_filename="downloaded.csv"
 
-cat $filelink | while read LINE; do
+cat $blobs | while read LINE; do
 	blob=$LINE
 
-	python main.py $blob
+	echo $blob
 
-	sudo mysql -u root iwant_db -e "LOAD DATA INFILE '$downloaded_filename' \
+	echo "Executing python script!"
+
+	python3.5 main.py $blob
+
+	mysql -u iwant iwant_db -ppwd@33iwant -e "LOAD DATA INFILE '$downloaded_filename' \
 	INTO TABLE customers_december \
 	FIELDS TERMINATED BY ',' \
 	LINES TERMINATED BY '\n' \
@@ -18,8 +22,13 @@ cat $filelink | while read LINE; do
 
 	if [ $result -ne 0 ]; then
 		echo "ERROR!"
+	fi 
+
+	break
+
 		
 	rm $downloaded_filename
+
 done
 
 

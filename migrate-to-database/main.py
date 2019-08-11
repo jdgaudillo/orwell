@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore")
+
 import io
 import os
 import time
@@ -20,10 +23,12 @@ if __name__ == "__main__":
 
 	blob_name = sys.argv[1]
 
-	downloadSingleBlob(account_name, account_key, container)
+	print("Printing blob to be downloaded: ", blob_name)
 
-	drop = ["calid", "propertyid", "src	activity", "original_video_content_id", "video_content_id", "original_video_category_id", "video_category_id", 
-			"number_used", "currency", "amount", "free_access_tag", "producttype", "productname", "partner", "mobiletype", "session_startdt_year",
+	downloadSingleBlob(account_name, account_key, container, blob_name)
+
+	drop = ["calid", "propertyid", "src	activity", "original_video_content_id", "video_content_id", "original_video_category_id", "video_category_id", \
+			"number_used", "currency", "amount", "free_access_tag", "producttype", "productname", "partner", "mobiletype", "session_startdt_year", \
 			"session_startdt_month", "session_startdt_day", "verified", "sourcescript", "is_known", "app_version", "modifieddate"]
 
 
