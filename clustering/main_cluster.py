@@ -47,11 +47,7 @@ def clustering(X):
 
 		print("Inertia: ", distortion)
 
-		#data = addLabel(data, labels)
-
 	elbowPlot(distortions)
-
-	#return data
 
 
 def elbowPlot(distortions):
@@ -63,7 +59,7 @@ def elbowPlot(distortions):
 	plt.ylabel('Inertia', fontsize="x-large")
 
 	plt.savefig("plots/elbow_plot.png", dpi=300)
-	#plt.show()
+	plt.close()
 
 
 def silhouetteScore(X, labels, k, centers):
@@ -127,7 +123,14 @@ if __name__ == "__main__":
 	data = convertToDateTime(data)
 	data = addMonth(data, "inception_date", "inception_month")
 
+	data.loc[data.inception_month==12, "inception_month"] = 0
+
+	X = data[["recency", "frequency", "engagement", "inception_month"]]
+
 	print(data.head())
+
+	clustering(X)
+
 
 
 
